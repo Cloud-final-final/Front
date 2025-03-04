@@ -6,7 +6,7 @@ import HelloWorld from './components/Principal.vue'
   <div>
     <img src="./assets/doghappy.jpg" class="logo" alt="ayuda" sizes="200px" />
   </div>
-  <HelloWorld msg="This is a cry for help (proyecto 1 cloud)" />
+  <HelloWorld msg="Proyecto 1 cloud" />
 </template>
 
 <style scoped>
