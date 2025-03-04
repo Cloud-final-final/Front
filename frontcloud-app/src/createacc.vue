@@ -25,7 +25,7 @@ const handleRegister = async () => {
     }
   } catch (error) {
     responseStatus.value = error.response ? error.response.status : 'Network Error';
-    errorMessage.value = 'Error al registrar usuario, inténtalo de nuevo';
+    errorMessage.value = 'Error al registrar usuario, intentalo de nuevo';
   }
 };
 </script>
