@@ -11,7 +11,9 @@ const routes = [
   { path: '/', component: Prin1 },
   { path: '/login', component: Login },
   {path: '/register', component: createacc},
-  {path:'/mainpage', component: ChatPage}
+  {path:'/mainpage', component: ChatPage},
+  { path: '/:pathMatch(.*)*', redirect: '/' }  // Catch-all redirect
+
 ];
 
 const router = createRouter({
