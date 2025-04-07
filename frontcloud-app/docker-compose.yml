@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  frontend:
+    build:
+      context: .
+    container_name: vue_app
+    ports:
+      - "80:80"
+    restart: unless-stopped

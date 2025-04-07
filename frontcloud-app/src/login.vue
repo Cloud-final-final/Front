@@ -16,7 +16,7 @@ const router = useRouter();
 const handleSubmit = async () => {
   errorMessage.value = '';
   try {
-    const response = await axios.post('http://localhost:8000/login', 
+    const response = await axios.post(`${BACKEND_URL}/login`, 
       new URLSearchParams({
         username: form.value.username,
         password: form.value.password,

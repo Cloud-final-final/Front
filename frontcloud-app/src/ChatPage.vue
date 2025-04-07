@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import axios from 'axios';
+import BACKEND_URL from '../config';
 
 // Guardar token de /login
 const route = useRoute();
@@ -22,7 +23,7 @@ const selectedFile = ref('');
 // leer la información de usuario GET /users/me
 const getUserInfo = async () => {
   try {
-    const response = await axios.get('http://localhost:8000/users/me', {
+    const response = await axios.get(`${BACKEND_URL}/users/me`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     username.value = response.data.username;
@@ -34,7 +35,7 @@ const getUserInfo = async () => {
 // hacer el GET /files
 const getFiles = async () => {
   try {
-    const response = await axios.get('http://localhost:8000/files', {
+    const response = await axios.get(`${BACKEND_URL}/files`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     files.value = response.data;
@@ -61,7 +62,7 @@ const uploadFile = async () => {
   try {
     const formData = new FormData();
     formData.append('file', file.value);
-    const response = await axios.post('http://localhost:8000/upload', formData, {
+    const response = await axios.post(`${BACKEND_URL}/upload`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
@@ -83,7 +84,7 @@ const askQuestion = async () => {
   }
   loading.value = true;
   try {
-    const response = await axios.post(`http://localhost:8000/ask/${selectedFile.value}`, 
+    const response = await axios.post(`${BACKEND_URL}/ask/${selectedFile.value}`, 
       { question: question.value }, 
       {
         headers: { Authorization: `Bearer ${token}` },

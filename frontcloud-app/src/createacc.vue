@@ -14,7 +14,7 @@ const handleRegister = async () => {
   errorMessage.value = "";
   responseStatus.value = null;
   try {
-    const response = await axios.post("http://localhost:8000/register/", {
+    const response = await axios.post(`${BACKEND_URL}register/`, {
       username: form.value.username,
       password: form.value.password,
     });
