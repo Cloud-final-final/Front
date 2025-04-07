@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
+import BACKEND_URL from './config';
 
 const form = ref({
   username: "",
