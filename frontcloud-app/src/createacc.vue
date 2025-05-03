@@ -15,20 +15,29 @@ const handleRegister = async () => {
   errorMessage.value = "";
   responseStatus.value = null;
   try {
-    const response = await axios.post(`${BACKEND_URL}register/`, {
+    const response = await axios.post(`${BACKEND_URL}/register`, {
       username: form.value.username,
       password: form.value.password,
     });
 
     responseStatus.value = response.status;
-    if (response.status === 201) {
+    if (response.status === 200) { // FastAPI devuelve 200 OK por defecto
       isSuccess.value = true;
+      // Opcional: guardar token y redirigir si el registro también inicia sesión
+      const token = response.data.access_token;
+      localStorage.setItem('accessToken', token);
+      router.push('/mainpage'); // Asumiendo que tienes acceso al router
     }
   } catch (error) {
     responseStatus.value = error.response
       ? error.response.status
       : "Network Error";
-    errorMessage.value = "Error al registrar usuario, intentalo de nuevo";
+    if (error.response && error.response.status === 400) {
+        errorMessage.value = error.response.data.detail || "El nombre de usuario ya está registrado.";
+    } else {
+        errorMessage.value = "Error al registrar usuario, inténtalo de nuevo.";
+    }
+    console.error("Registration error:", error.response || error);
   }
 };
 </script>

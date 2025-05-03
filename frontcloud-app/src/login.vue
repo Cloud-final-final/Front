@@ -33,7 +33,12 @@ const handleSubmit = async () => {
     console.log('Access Token:', accessToken.value);
     router.push({ path: '/mainpage', query: { token: accessToken.value } });
   } catch (error) {
-    errorMessage.value = error.response ? `Código de respuesta: ${error.response.status}` : 'Network Error';
+    if (error.response && error.response.status === 400) {
+      errorMessage.value = error.response.data.detail || 'Usuario o contraseña incorrectos.';
+    } else {
+      errorMessage.value = error.response ? `Error: ${error.response.status}` : 'Error de red al intentar iniciar sesión.';
+    }
+    console.error("Login error:", error.response || error);
   }
 };
 </script>
