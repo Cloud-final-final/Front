@@ -4,6 +4,10 @@ services:
   frontend:
     build:
       context: .
+      args:
+        # Set this environment variable when running docker-compose up
+        # Example: VITE_BACKEND_URL=http://your-backend-url docker-compose up --build
+        - VITE_BACKEND_URL=${VITE_BACKEND_URL:-http://localhost:8000}
     container_name: vue_app
     ports:
       - "80:80"

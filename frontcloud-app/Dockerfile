@@ -12,6 +12,11 @@ RUN npm install
 # Copy the rest of the application files
 COPY . .
 
+# Declare the build argument
+ARG VITE_BACKEND_URL
+# Set the environment variable for the build process
+ENV VITE_BACKEND_URL=${VITE_BACKEND_URL}
+
 # Build the Vue application
 RUN npm run build
 
